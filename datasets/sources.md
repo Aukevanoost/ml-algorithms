@@ -1,0 +1,3 @@
+- car_evaluation.decision-trees: https://archive.ics.uci.edu/dataset/19/car+evaluation
+- drugs.decision-trees: https://www.kaggle.com/datasets/pablomgomez21/drugs-a-b-c-x-y-for-decision-trees
+- winequality-white.csv: https://machinelearningmastery.com/standard-machine-learning-datasets/
