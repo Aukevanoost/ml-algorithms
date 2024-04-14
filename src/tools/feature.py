@@ -1,8 +1,26 @@
 import numpy as np
-import pandas as pd
-import math
 from tools import stream as str
 
+class Stream:
+    def __init__(self, series):
+        self.series = series
+
+    def reduce(self, func, initial):
+        result = initial
+        for item in self.series:
+            result = func(result, item)
+        return result
+
+    def sum(self, func):
+        result = 0
+        for item in self.series:
+            result = result + func(item)
+        return result
+    
+    @staticmethod
+    def of(series): 
+        return Stream(series)
+    
 def _scale(df, feature):
     # dataframe[feature].mean()
     mean = df[feature].sum() / df[feature].size
@@ -17,26 +35,4 @@ def _scale(df, feature):
     return df
 
 def scale(df, features): 
-    return str.of(features).reduce(lambda data, feature: _scale(data, feature), df)
-    
-def encode(df, features):
-    return pd.get_dummies(df, columns=features)
-
-def boxplot_vals(df, feature): 
-    Q1 = df[feature].quantile(0.25)
-    mean = df[feature].mean()
-    Q3 = df[feature].quantile(0.75)
-    IQR = Q3 - Q1
-    lower_bound = Q1 - 1.5 * IQR
-    upper_bound = Q3 + 1.5 * IQR
-    return lower_bound, Q1, mean, Q3, upper_bound
-
-def value_freq_perc(df, feature, value):
-    total_count = len(df[feature])
-    value_count = len(df[df[feature] == value])
-    percentage = (value_count / total_count) * 100
-    return percentage
-
-def P(occurances, total):
-    return occurances / total
-
+    return Stream.of(features).reduce(lambda data, feature: _scale(data, feature), df)
