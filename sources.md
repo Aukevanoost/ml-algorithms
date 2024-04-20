@@ -2,3 +2,4 @@
 - drugs.decision-trees: https://www.kaggle.com/datasets/pablomgomez21/drugs-a-b-c-x-y-for-decision-trees
 - winequality-white.csv: https://machinelearningmastery.com/standard-machine-learning-datasets/
 - weather_history.regression.csv: https://www.kaggle.com/datasets/budincsevity/szeged-weather
+- weather_forecast.bayes.csv: https://www.kaggle.com/datasets/dheemanthbhat/simple-weather-forecast/data
